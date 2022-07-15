@@ -10,7 +10,10 @@ import static de.robv.android.xposed.XposedHelpers.findClass;
 
 public class ListentogetherHook {
     public ListentogetherHook(Context context, int versionCode) {
-        if (versionCode > 8007090) {
+        if (versionCode > 8007091) {
+            findAndHookMethod(findClass("com.netease.cloudmusic.module.listentogether.y", context.getClassLoader()),
+                    "v", XC_MethodReplacement.returnConstant(true));
+        }else if (versionCode > 8007090) {
             findAndHookMethod(findClass("com.netease.cloudmusic.module.listentogether.x", context.getClassLoader()),
                     "v", XC_MethodReplacement.returnConstant(true));
         }else if (versionCode == 8007090) {
